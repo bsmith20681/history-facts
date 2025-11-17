@@ -1,20 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
-    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" type="text/css">-->
-    <link rel="stylesheet" href="/css/styles.css">
-</head>
-
 <?php
 // TODO: Add a try catch block here
 $dsn = "mysql:host=localhost;port=3306;dbname=history_facts;charset=utf8mb4";
 $pdo = new PDO($dsn, 'root');
 
+
+//Delete fact Rename the statement variable during refactor
+if (isset($_GET['delete'])) {
+    $id = intval($_GET['delete']);
+
+    $statement = $pdo->prepare("DELETE FROM facts WHERE id = :id");
+
+    $statement->bindValue(':id', $id, PDO::PARAM_INT);
+
+    $statement->execute();
+}
+
+//Fetch all facts
 $statement = $pdo->prepare("SELECT * FROM facts ORDER BY ID DESC");
 $statement->execute();
 
@@ -25,17 +26,24 @@ $facts = $statement->fetchAll(PDO::FETCH_ASSOC);
 
     <?php require('partials/nav.php'); ?>
 
+
+    <!--you could probably refactor this into something better -->
     <?php if (isset($_GET['success']) && $_GET['success'] == 1): ?>
-        <!--Not the proper use of article, but CSS framework has it styled already so I'm going with it.-->
-        <article class="container" style="background-color: #39F1A6;">
+        <div class="container alert alert-success" role="alert">
             You're fact was successfully submitted!
-        </article>
+        </div>
+    <?php endif; ?>
+
+    <?php if (isset($_GET['updated']) && $_GET['updated'] == 1): ?>
+        <div class="container alert alert-success" role="alert">
+            You're fact was successfully updated!
+        </div>
     <?php endif; ?>
 
 
     <div class=" container">
         <figure>
-            <table>
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>Fact</th>
@@ -48,7 +56,7 @@ $facts = $statement->fetchAll(PDO::FETCH_ASSOC);
                         <tr>
                             <td><?php echo htmlspecialchars($fact['fact_text']); ?></td>
                             <td><?php echo htmlspecialchars($fact['fact_year']); ?></td>
-                            <td><a href="">Edit</a> | <a href="">Delete</a></td>
+                            <td><a href="/fact.php?id=<?php echo htmlspecialchars($fact['id']); ?>">Edit</a> | <a href="/?delete=<?php echo htmlspecialchars($fact['id']) ?>" onclick="return confirm('Delete this fact?');">Delete</a></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -57,6 +65,7 @@ $facts = $statement->fetchAll(PDO::FETCH_ASSOC);
 
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 
 </html>
