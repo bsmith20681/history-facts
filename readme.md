@@ -3,7 +3,7 @@
 
 ## To do List
 
-- Connect app to a Database
+x Connect app to a Database
 - Add Create fact
 - Delete Fact
 - Edit Fact
@@ -14,5 +14,6 @@
 - refactor app to follow mvc pattern
 - add in user authentication
 - refactor to follow oop
+- create tests using pest php
 
 # history-facts

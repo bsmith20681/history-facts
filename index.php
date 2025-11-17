@@ -11,6 +11,7 @@
 </head>
 
 <?php
+// TODO: Add a try catch block here
 $dsn = "mysql:host=localhost;port=3306;dbname=history_facts;charset=utf8mb4";
 $pdo = new PDO($dsn, 'root');
 
@@ -18,23 +19,21 @@ $statement = $pdo->prepare("SELECT * FROM facts ORDER BY ID DESC");
 $statement->execute();
 
 $facts = $statement->fetchAll(PDO::FETCH_ASSOC);
-//var_dump($facts);
 ?>
 
 <body>
 
+    <?php require('partials/nav.php'); ?>
 
-    <nav class="container">
-        <ul>
-            <li><a href="/"><strong>CoolHistoryFacts.com</strong></a></li>
-        </ul>
-        <ul>
-            <li><a href="/add-fact.php">Add a Fact</a></li>
-        </ul>
-    </nav>
+    <?php if (isset($_GET['success']) && $_GET['success'] == 1): ?>
+        <!--Not the proper use of article, but CSS framework has it styled already so I'm going with it.-->
+        <article class="container" style="background-color: #39F1A6;">
+            You're fact was successfully submitted!
+        </article>
+    <?php endif; ?>
 
 
-    <div class="container">
+    <div class=" container">
         <figure>
             <table>
                 <thead>

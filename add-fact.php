@@ -1,42 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
-    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" type="text/css">-->
-    <link rel="stylesheet" href="/css/styles.css">
-</head>
+<?php
+require('partials/nav.php');
 
 
+//TODO: add try catch
+$dsn = "mysql:host=localhost;port=3306;dbname=history_facts;charset=utf8mb4";
+$pdo = new PDO($dsn, 'root');
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $fact = trim($_POST['fact']);
+    $year = trim($_POST['year']);
 
-<body>
+    $statement = $pdo->prepare("INSERT INTO facts (fact_text, fact_year) VALUES (:fact, :year)");
 
+    $statement->execute([
+        ':fact' => $fact,
+        ':year' => $year
+    ]);
 
-    <nav class="container">
-        <ul>
-            <li><a href="/"><strong>CoolHistoryFacts.com</strong></a></li>
-        </ul>
-        <ul>
-            <li><a href="/add-fact.php">Add a Fact</a></li>
-        </ul>
-    </nav>
+    header('Location: http://localhost:3000/?success=1');
+    die();
+}
 
+?>
 
-    <div class="container">
-        <form action="">
-            <textarea
-                name="fact"
-                placeholder="Write an Interesting fact"
-                aria-label="write an interesting history fact">
+<div class="container">
+    <form method="POST">
+        <textarea
+            required
+            name="fact"
+            placeholder="Write an Interesting fact">
             </textarea>
-            <input type="text" placeholder="Year" maxlength="4">
-            <input type="submit">
-        </form>
-    </div>
+        <input required type="text" name="year" placeholder="Year" maxlength="4">
+        <input type="submit" value="Add Fact">
+    </form>
+</div>
 
 </body>
 
