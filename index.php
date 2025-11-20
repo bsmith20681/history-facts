@@ -1,25 +1,18 @@
 <?php
 // TODO: Add a try catch block here
-$dsn = "mysql:host=localhost;port=3306;dbname=history_facts;charset=utf8mb4";
-$pdo = new PDO($dsn, 'root');
+require('database.php');
 
-
-//Delete fact Rename the statement variable during refactor
 if (isset($_GET['delete'])) {
     $id = intval($_GET['delete']);
 
-    $statement = $pdo->prepare("DELETE FROM facts WHERE id = :id");
-
-    $statement->bindValue(':id', $id, PDO::PARAM_INT);
-
-    $statement->execute();
+    $db->query(
+        "DELETE FROM facts WHERE id = :id",
+        [':id' => $id]
+    );
 }
 
-//Fetch all facts
-$statement = $pdo->prepare("SELECT * FROM facts ORDER BY ID DESC");
-$statement->execute();
-
-$facts = $statement->fetchAll(PDO::FETCH_ASSOC);
+$statement = $db->query("SELECT * FROM facts ORDER BY ID DESC");
+$facts = $statement->fetchAll();
 ?>
 
 <body>
