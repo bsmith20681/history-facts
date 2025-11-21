@@ -15,7 +15,7 @@ class Database
         $pass = '';
         $charset = 'utf8mb4';
 
-        $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=$charset";
+        $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=$charset;";
 
         try {
             $this->connection = new PDO($dsn, $user, $pass, [
@@ -35,11 +35,6 @@ class Database
         $statement->execute($params);
 
         return $statement;
-    }
-
-    public function getConnection()
-    {
-        return $this->connection;
     }
 }
 
