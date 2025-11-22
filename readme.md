@@ -11,21 +11,19 @@ x Delete Fact
 x Edit Fact
 x refactor pdo
 x refactor app to follow mvc pattern
+x General clean up
+x create a footer partial
+x refactor alerts on success and be able to close out of them
+x add character limit to fact text
+x add check so you can't put in a year past the current year
+x Filter the facts table on the homepage by clicking on the year
+x add pagination (should have 10 facts per page)
 
-- General clean up
-  x create a footer partial
-
-  - refactor alerts on success and be able to close out of them
-  - add character limit to fact text
-  - add check so you can't put in a year past the current year
-
-- Filter the facts table on the homepage by clicking on the year
-- add pagination (should have 10 facts per page)
 - buy server space, learn to ssh into server
 - set up github action intergration for every merge to master to push public
-- create tests using pest php
 - add in user authentication (only users can update, create, and delete facts. They can edit or delete any fact.)
 - refactor to follow oop
+- create tests using pest php
 
 Eventually add these features
 

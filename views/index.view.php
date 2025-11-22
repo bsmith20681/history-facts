@@ -3,16 +3,10 @@ $title = "Home";
 require('partials/nav.php');
 ?>
 
-<!--this needs to be refactor this into something better -->
-<?php if (isset($_GET['success']) && $_GET['success'] == 1): ?>
-    <div class="container alert alert-success" role="alert">
-        You're fact was successfully submitted!
-    </div>
-<?php endif; ?>
-
-<?php if (isset($_GET['updated']) && $_GET['updated'] == 1): ?>
-    <div class="container alert alert-success" role="alert">
-        You're fact was successfully updated!
+<?php if ($alertMessage): ?>
+    <div class="container alert alert-success alert-dismissible" role="alert">
+        <p><?= htmlspecialchars($alertMessage) ?></p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 <?php endif; ?>
 
@@ -23,7 +17,8 @@ require('partials/nav.php');
             <thead>
                 <tr>
                     <th>Fact</th>
-                    <th>Year</th>
+                    <!--this is really bad, I'll clean this up later-->
+                    <th><a href="<?= isset($_GET['page']) ? '/?page=' . $_GET['page'] . '&order=desc' : '/?order=desc' ?>">Year</a></th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -38,6 +33,26 @@ require('partials/nav.php');
             </tbody>
         </table>
     </figure>
+
+    <div class="container my-3 d-flex justify-content-center">
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <?php if ($page > 1): ?>
+                    <li class="page-item"><a class="page-link" href="/?page=<?= $page - 1 ?>">Previous</a></li>
+                <?php endif; ?>
+
+                <?php for ($p = 1; $p <= $totalPages; $p++): ?>
+                    <?php $active = ($p === $page) ? 'active' : ''; ?>
+                    <li class="page-item"><a class="page-link <?= $active ?>" href="/?page=<?= $p ?>"><?= $p ?></a></li>
+                <?php endfor ?>
+
+                <?php if ($page < $totalPages): ?>
+                    <li class="page-item"><a class="page-link" href="/?page=<?= $page + 1 ?>">Next</a></li>
+                <?php endif; ?>
+
+            </ul>
+        </nav>
+    </div>
 
 </div>
 
