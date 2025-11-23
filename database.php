@@ -6,15 +6,14 @@ class Database
 
     public function __construct()
     {
-        $host = 'localhost';
-        $port = '3306';
-        $db   = 'history_facts';
-
-        //TODO: create an acutal user later
-        $user = 'root';
-        $pass = '';
+        $host = getenv('DB_HOST') ?: 'localhost';
+        $port = getenv('DB_NAME') ?: '3306';
+        $db   = getenv('DB_NAME') ?: 'history_facts';
+        $user = getenv('DB_USER') ?: 'root';
+        $pass = getenv('DB_PASS') ?: '';
         $charset = 'utf8mb4';
 
+        //TODO: create an acutal user later
         $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=$charset;";
 
         try {
