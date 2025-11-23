@@ -1,7 +1,7 @@
 ## To run locally
 
 1. click on live server button below
-2. right click and run php server
+2. run php -S localhost:3000 -t public_html
 
 ## To do List
 
@@ -18,8 +18,8 @@ x add character limit to fact text
 x add check so you can't put in a year past the current year
 x Filter the facts table on the homepage by clicking on the year
 x add pagination (should have 10 facts per page)
+x buy server space, learn to ssh into server
 
-- buy server space, learn to ssh into server
 - set up github action intergration for every merge to master to push public
 - add in user authentication (only users can update, create, and delete facts. They can edit or delete any fact.)
 - refactor to follow oop

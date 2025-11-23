@@ -17,7 +17,7 @@ if (isset($_GET['order']) && $_GET['order'] == 'desc') {
     $orderBy = 'fact_year DESC';
 }
 
-// ------------ PAGEINATION --------------
+// ------------ PAGINATION --------------
 
 $perPage = 10;
 $page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1; // makes sure it never goes below 1
@@ -43,4 +43,4 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
     $alertMessage = "Your fact was successfully updated!";
 }
 
-require('./views/index.view.php');
+require('../views/index.view.php');
