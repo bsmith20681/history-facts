@@ -4,7 +4,8 @@ $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 
 $routes = [
     '/'     => 'controllers/IndexController.php',
-    '/fact' => 'controllers/FactController.php'
+    '/fact' => 'controllers/FactController.php',
+    '/fact-view' => 'controllers/FactViewController.php',
 ];
 
 

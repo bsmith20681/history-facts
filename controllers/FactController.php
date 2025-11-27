@@ -52,4 +52,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-require('../views/fact.view.php');
+require('../views/facts/create.php');

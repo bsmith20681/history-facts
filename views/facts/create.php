@@ -1,6 +1,6 @@
 <?php
 $title = "Create or Update a Fact";
-require('partials/nav.php');
+require __DIR__ . '/../partials/nav.php';
 ?>
 <div class="container">
     <?php if (!empty($error)): ?>
@@ -21,4 +21,4 @@ require('partials/nav.php');
     </form>
 </div>
 
-<?php require('partials/footer.php'); ?>
+<?php require __DIR__ . '/../partials/footer.php'; ?>

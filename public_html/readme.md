@@ -21,12 +21,16 @@ x add pagination (should have 10 facts per page)
 x buy server space, learn to ssh into server
 x launch on digital ocean droplet
 
-- add in user authentication (only users can update, create, and delete facts. They can edit or delete any fact.)
-- refactor to follow oop
-- create tests using pest php
+## app refactors for better understanding
+
+- redo the router
+- add in comments following php doc standard
 
 ### Eventually add these features
 
+- add in user authentication (only users can update, create, and delete facts. They can edit or delete any fact.)
+- refactor to follow oop
+- create tests using pest php
 - Narrow down user auth so users can only edit, update and delete their own facts.
 - single fact view (and update routes /fact/{id}/edit /fact/{id} to view a fact etc)
 - comment on a single fact view
