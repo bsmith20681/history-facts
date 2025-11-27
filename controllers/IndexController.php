@@ -7,6 +7,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         "DELETE FROM facts WHERE id = :id",
         [':id' => $id]
     );
+
+    header("Location: /");
+    exit;
 }
 
 
