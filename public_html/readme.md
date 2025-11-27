@@ -19,22 +19,16 @@ x add check so you can't put in a year past the current year
 x Filter the facts table on the homepage by clicking on the year
 x add pagination (should have 10 facts per page)
 x buy server space, learn to ssh into server
+x launch on digital ocean droplet
 
-x set up subdomain
-- create directory in www on server
-- set up virtual host
-- clone repo into directory
-- update database config file
-
-- set up github action intergration for every merge to master to push public
 - add in user authentication (only users can update, create, and delete facts. They can edit or delete any fact.)
 - refactor to follow oop
 - create tests using pest php
 
-Eventually add these features
+### Eventually add these features
 
 - Narrow down user auth so users can only edit, update and delete their own facts.
-- single fact view
+- single fact view (and update routes /fact/{id}/edit /fact/{id} to view a fact etc)
 - comment on a single fact view
 - like and unlike a single fact
 - display number of likes and comments in row on table in index view
