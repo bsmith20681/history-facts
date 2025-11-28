@@ -10,14 +10,16 @@ require __DIR__ . '/../partials/nav.php';
         </div>
     <?php endif; ?>
 
-    <form method="POST" action="/fact-create">
+    <form method="POST" action="/fact-update">
         <textarea
             placeholder="Write an Interesting fact in under 140 characters"
             required
             class="form-control mb-3"
-            name="fact"></textarea>
-        <input class="form-control mb-3" required type="text" name="year" placeholder="Year" maxlength="4" value="">
-        <input class="btn btn-primary" type="submit" value="Create Fact">
+            name="fact"><?= isset($fact) ? htmlspecialchars($fact) : '' ?></textarea>
+        <input class="form-control mb-3" required type="text" name="year" placeholder="Year" maxlength="4" value="<?= isset($year) ? htmlspecialchars($year) : '' ?>">
+        <input type="text" value="<?= $_GET['id'] ?>" name="id" hidden>
+        <input type="text" value="PUT" name="_method" hidden>
+        <input class="btn btn-primary" type="submit" value="Update Fact">
     </form>
 </div>
 

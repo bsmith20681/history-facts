@@ -23,7 +23,10 @@ x launch on digital ocean droplet
 
 ## app refactors for better understanding
 
-- redo the router
+x redo the router (split it up into different files, pretty sure this could be combined into one controller)
+
+- update router to include methods
+- add in a validator tool for comments and adding facts
 - add in comments following php doc standard
 
 ### Eventually add these features

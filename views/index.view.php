@@ -3,13 +3,14 @@ $title = "Home";
 require('partials/nav.php');
 ?>
 
+<!--
 <?php if ($alertMessage): ?>
     <div class="container alert alert-success alert-dismissible" role="alert">
         <p><?= htmlspecialchars($alertMessage) ?></p>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 <?php endif; ?>
-
+-->
 
 <div class=" container">
     <figure>
@@ -25,9 +26,9 @@ require('partials/nav.php');
             <tbody>
                 <?php foreach ($facts as $fact): ?>
                     <tr>
-                        <td><a class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="/fact-view?id=<?php echo htmlspecialchars($fact['id']); ?>"><?php echo htmlspecialchars($fact['fact_text']); ?></a></td>
+                        <td><a class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="/fact?id=<?php echo htmlspecialchars($fact['id']); ?>"><?php echo htmlspecialchars($fact['fact_text']); ?></a></td>
                         <td><?php echo htmlspecialchars($fact['fact_year']); ?></td>
-                        <td class="d-flex align-items-center gap-1"><a href="/fact?id=<?php echo htmlspecialchars($fact['id']); ?>">Edit </a> | <form method="POST"><input type="text" name="id" value="<?php echo htmlspecialchars($fact['id']) ?>" hidden><input type="submit" class="btn btn-link p-0" value="Delete" onclick="return confirm('Delete this fact?');"></form>
+                        <td class="d-flex align-items-center gap-1"><a href="/fact-edit?id=<?php echo htmlspecialchars($fact['id']); ?>">Edit </a> | <form action="/fact-delete" method="POST"><input type="text" name="id" value="<?php echo htmlspecialchars($fact['id']) ?>" hidden><input type="submit" class="btn btn-link p-0" value="Delete" onclick="return confirm('Delete this fact?');"></form>
                         </td>
                     </tr>
                 <?php endforeach; ?>

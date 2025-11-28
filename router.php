@@ -3,9 +3,12 @@
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 
 $routes = [
-    '/'     => 'controllers/IndexController.php',
-    '/fact' => 'controllers/FactController.php',
-    '/fact-view' => 'controllers/FactViewController.php',
+    '/'            => 'controllers/facts/index.php',
+    '/fact'        => 'controllers/facts/show.php',
+    '/fact-create' => 'controllers/facts/create.php',
+    '/fact-delete' => 'controllers/facts/delete.php',
+    '/fact-edit'   => 'controllers/facts/edit.php',
+    '/fact-update' => 'controllers/facts/put.php',
 ];
 
 

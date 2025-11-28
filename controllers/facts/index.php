@@ -1,18 +1,4 @@
 <?php
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $id = trim($_POST['id']);
-
-    $db->query(
-        "DELETE FROM facts WHERE id = :id",
-        [':id' => $id]
-    );
-
-    header("Location: /");
-    exit;
-}
-
-
 // ------------ ORDERING --------------
 $orderBy = 'id DESC'; // The default view shows the most recently created fact
 
@@ -21,6 +7,7 @@ if (isset($_GET['order']) && $_GET['order'] == 'desc') {
 }
 
 // ------------ PAGINATION --------------
+
 
 $perPage = 10;
 $page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1; // makes sure it never goes below 1
@@ -35,15 +22,5 @@ $statement = $db->query("SELECT * FROM facts ORDER BY $orderBy LIMIT :limit OFFS
     ':offset' => $offset
 ]);
 $facts = $statement->fetchAll();
-
-
-// ------------ ALERTS --------------
-$alertMessage = null;
-
-if (isset($_GET['success']) && $_GET['success'] == 1) {
-    $alertMessage = "Your fact was successfully submitted!";
-} elseif (isset($_GET['updated']) && $_GET['updated'] == 1) {
-    $alertMessage = "Your fact was successfully updated!";
-}
 
 require('../views/index.view.php');

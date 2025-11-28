@@ -1,4 +1,3 @@
-
 <?php
 if (isset($_GET['id'])) {
     $id = intval($_GET['id']);
@@ -16,4 +15,4 @@ if (isset($_GET['id'])) {
     }
 }
 
-require('../views/facts/show.php');
+require('../views/facts/edit.php');

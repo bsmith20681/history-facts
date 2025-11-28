@@ -19,7 +19,7 @@
             <nav class="navbar">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="/">CoolHistoryFacts.com</a>
-                    <a class="btn btn-primary" href="/fact">Create a Fact</a>
+                    <a class="btn btn-primary" href="/fact-create">Create a Fact</a>
                 </div>
             </nav>
         </nav>
