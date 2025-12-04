@@ -6,7 +6,7 @@ $routes = [
     '/'            => 'controllers/facts/index.php',
     '/fact'        => 'controllers/facts/show.php',
     '/fact-create' => 'controllers/facts/create.php',
-    '/fact-delete' => 'controllers/facts/delete.php',
+    '/fact-delete' => 'controllers/facts/destroy.php',
     '/fact-edit'   => 'controllers/facts/edit.php',
     '/fact-update' => 'controllers/facts/put.php',
 ];

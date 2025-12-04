@@ -1,4 +1,5 @@
 <?php
+
 // ------------ ORDERING --------------
 $orderBy = 'id DESC'; // The default view shows the most recently created fact
 
@@ -22,5 +23,6 @@ $statement = $db->query("SELECT * FROM facts ORDER BY $orderBy LIMIT :limit OFFS
     ':offset' => $offset
 ]);
 $facts = $statement->fetchAll();
+
 
 require('../views/index.view.php');
